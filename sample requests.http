@@ -1,0 +1,18 @@
+@baseUrl = http://localhost:4004
+
+@authorization = test
+
+### Submit Orders
+# POST http://localhost̥:4004/browse/Orders 
+POST {{baseUrl}}/browse/Orders 
+Content-Type: application/json
+# Authorization: Basic {{authorization}}
+
+{ "OrderNo":"2019-09...", "Items":[
+    {"book_ID": 201, "amount":5}
+]}
+
+# Sending this three times should result in 409: exceeds stock
+
+### Check books entity that stock was reduced
+GET {{baseUrl}}/admin/Books(201) 
